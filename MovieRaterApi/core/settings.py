@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     
     # 3rd-paries
     'rest_framework',
+    'rest_framework.authtoken',
 
     # my
     'api'
