@@ -4,6 +4,27 @@ var FontAwesome = require('react-fontawesome');
 
 class MovieDetails extends Component {
 
+  state = {
+    highlighted: -1
+  }
+
+  highlightRate = high => evt => {
+    this.setState({highlighted: high});
+  }
+
+  rateClicked = stars => evt => {
+    fetch(`http://127.0.0.1:8000/api/movies/${this.props.movie.id}/rate_movie/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Token 2d39ded84ee4f772d8a96fe96671e3ffc0e68db3'
+      },
+      body: JSON.stringify({stars: stars + 1})
+    }).then( resp => resp.json())
+    .then( res => console.log(res))
+    .catch( error => console.log(error))
+  }
+
 	render() {
 		const mov = this.props.movie;
 
@@ -19,6 +40,15 @@ class MovieDetails extends Component {
 						<FontAwesome name="star" className={mov.avg_rating > 4 ? 'orange' : ''}/>
 						({mov.no_of_ratings})
 						<p>{mov.description}</p>
+
+            <div className="rate-container">
+              <h2>Rate it!</h2>
+              { [...Array(5)].map( (e, i) => {
+                return <FontAwesome key={i} name="star" className={this.state.highlighted > i - 1 ? 'purple' : ''}
+                  onMouseEnter={this.highlightRate(i)} onMouseLeave={this.highlightRate(-1)} onClick={this.rateClicked(i)}/>;
+              })}
+            </div>
+
 					</div>
 				) : null }
 			</React.Fragment>
