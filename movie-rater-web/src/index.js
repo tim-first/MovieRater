@@ -6,16 +6,19 @@ import Login from './components/login';
 import reportWebVitals from './reportWebVitals';
 import { render } from "react-dom";
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { CookiesProvider } from 'react-cookie';
 
 
 const rootElement = document.getElementById("root");
 render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="movies" element={<App />} />
-    </Routes>
-  </BrowserRouter>,
+  <CookiesProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="movies" element={<App />} />
+      </Routes>
+    </BrowserRouter>
+  </CookiesProvider>,
   rootElement
 );
 
