@@ -7,11 +7,26 @@ class MovieForm extends Component {
 
   }
 
+  cancelClicked = () => {
+    this.props.cancelForm();
+  }
+  inputChanged = () => {
+    console.log('changed');
+  }
+  saveClicked = () => {
+    console.log('save');
+  }
+
 	render() {
 
 		return (
 			<React.Fragment>
-				<h1>Form</h1>
+				<span>Title</span><br />
+        <input type="text" value={this.props.movie.title} onChange={this.inputChanged} /><br />
+        <span>Description</span><br />
+        <textarea value={this.props.movie.description} onChange={this.inputChanged} /><br />
+        <button onClick={this.saveClicked}>Save</button>
+        <button onClick={this.cancelClicked}>Cancel</button>
 			</React.Fragment>
 		)
 	}
