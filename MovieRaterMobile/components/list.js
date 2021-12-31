@@ -21,10 +21,13 @@ export default function MovieList() {
 
   return (
     <View>
-      <Image source={require('../assets/favicon.png')}
-        style={{width: '100%', height: 135, paddingTop: 30}}
-        resizeMode='contain'
-      />
+      <View style={styles.logoWrapper}>
+        {/* <Image source={require('../assets/splash.png')}
+          style={{width: '100%', height: 135, paddingTop: 30}}
+          resizeMode='contain'
+        /> */}
+        MovieRater
+      </View>
       <FlatList
         data={movies}
         renderItem={({item}) => (
@@ -54,5 +57,12 @@ const styles = StyleSheet.create({
   itemText: {
     color: '#fff',
     padding: 10,
+  },
+  logoWrapper: {
+    backgroundColor: '#282C35',
+    color: 'yellow',
+    textAlign: 'center',
+    padding: 10,
+    fontWeight: 'bold'
   },
 });
