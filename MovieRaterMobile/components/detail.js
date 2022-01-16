@@ -1,10 +1,12 @@
 import { StyleSheet, Text, View} from 'react-native';
 
-export default function Detail() {
+export default function Detail(props) {
+
+  const movie = props.navigation.getParam('movie', null)
 
   return (
     <View>
-      <Text style={styles.detail}>Detail</Text>
+      <Text style={styles.detail}>Detail about {movie.title}</Text>
     </View>
   );
 }
